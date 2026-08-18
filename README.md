@@ -1,6 +1,6 @@
 # Cola Runner
 
-A playful mini game made for **[_cola_em_mim](https://www.instagram.com/_cola_em_mim/)** to bring to their booth at the fair, turning their collage artwork into a world you can actually play in.
+A playful little game made for **[_cola_em_mim](https://www.instagram.com/_cola_em_mim/)** to bring to their booth at the fair, turning their collage artwork into a world you can actually play in.
 
 ## ▶ Play now
 
@@ -10,13 +10,13 @@ A playful mini game made for **[_cola_em_mim](https://www.instagram.com/_cola_em
 
 ## What it is
 
-Cola Runner is a browser game built to live at a stall. While people browse the collages, they can jump into a quick round, chase a high score, and spend a little more time with the art. Every visual in the game is a real piece by _cola_em_mim, so the game itself becomes a small, interactive extension of the project.
+Cola Runner is a web game built to live at a stall. It runs entirely in the browser, so anyone can play instantly by opening the link, with nothing to download or install. While people browse the collages, they can jump into a quick round, chase a high score, and spend a little more time with the art. Every visual in the game is a real piece by _cola_em_mim, so the game itself becomes a small, interactive extension of the project.
 
 It ran live at the fair and logged over **1,200 play sessions**.
 
 ## How to play
 
-Open the link, jump in, and survive as long as you can. One input, endless run, one growing high score.
+No download, no install. Open the link in any browser, jump in, and survive as long as you can. One input, endless run, one growing high score.
 
 ## The art
 
