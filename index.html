@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0f0e0c" />
+    <title>Cola Runner</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <!-- Rotate overlay to block landscape mode on mobile devices -->
+    <div id="rotate-overlay" class="rotate-overlay">
+      <div class="rotate-card">
+        <svg
+          class="rotate-icon"
+          viewBox="0 0 24 24"
+          width="54"
+          height="54"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="5" y="2" width="14" height="20" rx="3" ry="3" />
+          <path d="M12 18h.01" />
+          <path d="M19 8l3 3-3 3" />
+          <path d="M22 11H16" />
+        </svg>
+        <p class="rotate-title">Gire o celular</p>
+        <p class="rotate-desc">Por favor, coloque seu celular na vertical para continuar correndo.</p>
+      </div>
+    </div>
+
+    <div id="stage">
+      <canvas id="game"></canvas>
+
+      <!-- DOM overlays: real tappable elements for CTAs / links -->
+      <div id="ui" class="ui">
+        <!-- IDENTIFICATION -->
+        <section class="screen" data-screen="identification" hidden>
+          <div class="card">
+            <p class="eyebrow">colagens da artista Giulia Quast</p>
+            <h1 class="title">Cola Runner</h1>
+            <p class="lead">Digite seu @ do instagram para registrar suas corridas e concorrer a prêmios</p>
+            <input
+              type="text"
+              id="player-name-input"
+              class="input-field"
+              placeholder="@seu.instagram"
+              maxlength="22"
+              autofocus
+            />
+            <button class="btn primary" id="confirm-name-btn" data-action="confirm-name" disabled>
+              Confirmar
+            </button>
+            <button class="btn ghost" id="play-guest-btn" data-action="play-guest">
+              Jogar como Convidado
+            </button>
+          </div>
+        </section>
+
+        <!-- CHARACTER SELECTION & GAME PREPARATION -->
+        <section class="screen" data-screen="select-character" hidden>
+          <div class="card">
+            <p class="eyebrow">personagem</p>
+            <h1 class="title">Quem vai correr?</h1>
+
+            <p class="player-tag" id="player-tag-ready">
+              Correndo como: <strong id="ready-player-name">Convidado</strong>
+              <span class="change-link" id="change-name-btn-ready" data-action="show-identification">(Alterar)</span>
+            </p>
+
+            <div class="character-list" id="character-list">
+              <!-- Loaded via JS -->
+            </div>
+
+            <p class="lead" style="font-size: 13px; margin: 2px 0 6px 0;">Toque para pular; 2x para pulo duplo.</p>
+
+            <button class="btn primary" data-action="start" id="confirm-character-btn" disabled>
+              Começar a Correr
+            </button>
+            <button class="btn ghost" data-action="view-leaderboard">Ranking</button>
+          </div>
+        </section>
+
+        <!-- GAME OVER -->
+        <section class="screen" data-screen="dead" hidden>
+          <div class="card">
+            <p class="eyebrow">Recorte Final</p>
+            <h2 class="score"><span data-bind="score">0</span><small>m</small></h2>
+            <p class="best">recorde: <span data-bind="best">0</span>m</p>
+
+            <!-- Share on Instagram -->
+            <p class="share-title">Escolha o fundo da sua colagem:</p>
+            <div class="share-bg-list" id="share-bg-list">
+              <!-- Loaded via JS -->
+            </div>
+            <button class="btn primary" data-action="share-instagram">
+              <svg
+                class="ig-icon"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="currentColor"
+                style="vertical-align: middle; margin-right: 6px;"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+                />
+              </svg>
+              Compartilhar Stories
+            </button>
+
+            <button class="btn primary" data-action="restart">Jogar de Novo</button>
+            <div class="btn-group-row">
+              <button class="btn ghost" data-action="change-character">Personagem</button>
+              <button class="btn ghost" data-action="view-leaderboard">Ranking</button>
+            </div>
+            <a class="btn ghost" data-bind="ig-link" href="#" target="_blank" rel="noopener">
+              Seguir o @
+            </a>
+            <p class="hint">Toque em qualquer lugar pra correr de novo.</p>
+          </div>
+        </section>
+
+        <!-- LEADERBOARD -->
+        <section class="screen" data-screen="leaderboard" hidden>
+          <div class="card">
+            <p class="eyebrow">placar de líderes</p>
+            <h1 class="title">Melhores Corridas</h1>
+
+            <div class="leaderboard-container">
+              <div id="leaderboard-status" class="leaderboard-status">Carregando placar...</div>
+              <div id="leaderboard-list" class="leaderboard-list" hidden>
+                <!-- Loaded via JS -->
+              </div>
+            </div>
+
+            <button class="btn primary" data-action="back-to-menu">Voltar</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
+
